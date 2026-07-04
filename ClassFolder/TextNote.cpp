@@ -1,5 +1,23 @@
 //
 // Created by Ali A on 04.07.26.
 //
+#include <string>
+#include "TextNote.h"
+using namespace std;
 
-#include "../TextNote.h"
+TextNote::TextNote(string t, string c) : title(t), content(c) {
+    characterCount = content.length();
+}
+
+void TextNote::display() const {
+
+}
+
+void TextNote::serialize() const {
+
+}
+
+void TextNote::setContent(const string& newContent) {
+    content = newContent;
+    characterCount = content.length();
+}

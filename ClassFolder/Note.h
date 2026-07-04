@@ -5,9 +5,20 @@
 #ifndef NOTENUGGET_NOTE_H
 #define NOTENUGGET_NOTE_H
 
+#include <string>
+
+using namespace std;
 
 class Note {
+    private:
+        string title;
+        string content;
+    public:
+        Note(string title, string content);
+        virtual ~Note();
+        virtual void display();
+        virtual void serialize();
+        string getTitle();
 };
-
 
 #endif //NOTENUGGET_NOTE_H

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 4.2)
+cmake_minimum_required(VERSION 4.1.2)
 project(notenugget)
 
 set(CMAKE_CXX_STANDARD 23)
@@ -13,4 +13,6 @@ add_executable(notenugget main.cpp
         ClassFolder/ToDoNote.cpp
         ClassFolder/ToDoNote.h
         ClassFolder/CLIUI.cpp
-        ClassFolder/CLIUI.h)
+        ClassFolder/CLIUI.h
+        main.cpp
+        main.cpp)

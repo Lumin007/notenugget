@@ -3,6 +3,9 @@
 //
 
 #include "Note.h"
+
+#include <iostream>
+#include <ostream>
 #include <string>
 
 using namespace std;
@@ -15,11 +18,11 @@ Note::Note(string title, string content) {
 Note::~Note() {}
 
 void Note::display() {
-
+    cout << this->title << " " << this->content << endl;
 }
 
-void Note::serialize() {
-
+string Note::serialize() {
+    return "TEXT|" + title + "|" + content;
 }
 
 string Note::getTitle() {

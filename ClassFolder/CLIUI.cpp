@@ -5,9 +5,11 @@
 #include "CLIUI.h"
 #include <iostream>
 #include <string>
+#include "NoteManager.h"
+#include "Note.h"
+
 #include <stdexcept> // Wichtig für Try-Catch (invalid_argument)
 using namespace std;
-#include "NoteManager.h"
 
 CLIUI::CLIUI(NoteManager& m) : manager(m){
 }
@@ -20,7 +22,7 @@ void CLIUI::start() {
 }
 void CLIUI::printMenu() {
     cout << "\n==============================\n";
-    cout << "       NOTIZEN-MANAGER        \n";
+    cout << "       NOTE-NUGGET        \n";
     cout << "==============================\n";
     cout << "[1] Notizen anzeigen\n";
     cout << "[2] Neue Text-Notiz hinzufuegen\n";
@@ -32,15 +34,32 @@ void CLIUI::printMenu() {
     cout << "------------------------------\n";
     cout << "Ihre Wahl: ";
 }
+
+istream operator>>(const istream & cin, const shared_ptr<Note> & rhs);
+
 void CLIUI::handleUserInput() {
     int choice;
     cin >> choice;
+
+    string title = "", content = "";
+    shared_ptr<Note> newNote;
 
     switch (choice) {
         case 1:
             manager.listNotes();
             break;
         case 2:
+            cin.ignore();
+
+            cout << "Bennene die Notiz:" << endl;
+            getline(cin, title);
+
+            cout << "Füge Inhalt hinzu:" << endl;
+            getline(cin, content);
+
+            newNote = make_shared<Note>(title, content);
+            manager.addNote(newNote);
+
             cout << "=> Text-Notiz wird hinzugefuegt...\n";
             break;
         case 3:

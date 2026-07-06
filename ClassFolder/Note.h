@@ -17,7 +17,7 @@ class Note {
         Note(string title, string content);
         virtual ~Note();
         virtual void display();
-        virtual void serialize();
+        virtual string serialize();
         string getTitle();
 };
 

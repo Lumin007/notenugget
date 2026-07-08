@@ -25,43 +25,35 @@ void NoteManager::addNote(shared_ptr<Note> newNote) {
 }
 
 void NoteManager::removeNote(int index) {
-    if (index >= 0 && index < notes.size()) {
-        notes.erase(notes.begin() + index);
 
-        cout << notes[index]->getTitle() << "wurde erfolgreich gelöscht! " << endl;
-    }
-    else {
-        cout << notes[index]->getTitle() << " konnte nicht gelöscht werden" << endl;
-    }
 }
 
 void NoteManager::listNotes() {
-    if (notes.size() == 0) {
+    if (notes.empty()) {
         cout << "keine Notizen vorhanden..." << endl;
         return;
     }
 
     for (int i = 0; i < notes.size(); i++) {
         cout << "------------------------------" << endl;
+        cout << i + 1 << ":" << endl;
         notes[i]->display();
     }
 }
 
 void NoteManager::saveToFile() {
-    ofstream file(fileName);
+    ofstream file("../txtFolder/NuggetDose");
 
     if (!file.is_open()) {
-        cout << "NoteManager::saveToFile: Kann nicht geöffnet werden!" << endl;
+        cout << "Speicherdatei konnte nicht geoeffnet werden!" << endl;
+        return;
     }
 
-    for (int i = 0; i < notes.size(); i++) {
-        file << notes[i]->serialize() << endl;
+    for (const auto& note : notes) {
+        file << note->serialize() << endl;
     }
 
     file.close();
-    cout << "Notizen wurden erfolgreich gespeichert!" << endl;
-}
-
-void NoteManager::loadFromFile() {
+    cout << "Alle Notizen wurden erfolgreich in einer Datei gespeichert!" << endl;
 
 }

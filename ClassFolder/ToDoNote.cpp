@@ -13,7 +13,7 @@ ToDoNote::ToDoNote(string t, string c) : Note(t, c), isDone(false) {
 
 
 void ToDoNote::display() const {
-    cout << "------------------------------\n";
+    cout << "--------------------------\n";
     string status = isDone ? "[X]" : "[ ]";
     cout << status << " TODO: " << title << "\n" << content << "\n\n";
 }

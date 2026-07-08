@@ -18,9 +18,8 @@ Note::Note(string title, string content) {
 Note::~Note() {}
 
 void Note::display() {
-    cout << this->title << " " << this->content << endl;
+    cout << "Titel: " << title << "\n\n" << content << endl;
 }
-
 string Note::serialize() {
     return "TEXT|" + title + "|" + content;
 }

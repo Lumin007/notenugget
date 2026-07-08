@@ -28,8 +28,7 @@ void CLIUI::printMenu() {
     cout << "[2] Neue Text-Notiz hinzufuegen\n";
     cout << "[3] Neue Todo-Notiz hinzufuegen\n";
     cout << "[4] Notiz loeschen\n";
-    cout << "[5] Notizen speichern\n";
-    cout << "[6] Notizen laden\n";
+    cout << "[5] Notizen laden\n";
     cout << "[0] Programm beenden\n";
     cout << "------------------------------\n";
     cout << "Ihre Wahl: ";
@@ -54,7 +53,7 @@ void CLIUI::handleUserInput() {
             cout << "Bennene die Notiz:" << endl;
             getline(cin, title);
 
-            cout << "Füge Inhalt hinzu:" << endl;
+            cout << "Feuge Inhalt hinzu:" << endl;
             getline(cin, content);
 
             newNote = make_shared<Note>(title, content);
@@ -69,9 +68,6 @@ void CLIUI::handleUserInput() {
             cout << "=> Notiz wird geloescht...\n";
             break;
         case 5:
-            manager.saveToFile();
-            break;
-        case 6:
             manager.loadFromFile();
             break;
         case 0:

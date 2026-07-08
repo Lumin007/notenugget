@@ -42,8 +42,7 @@ void NoteManager::listNotes() {
     }
 
     for (int i = 0; i < notes.size(); i++) {
-        cout << notes[i]->getTitle() << endl;
-
+        cout << "------------------------------" << endl;
         notes[i]->display();
     }
 }

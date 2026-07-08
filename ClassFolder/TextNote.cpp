@@ -13,7 +13,7 @@ TextNote::TextNote(string t, string c) : Note(t, c) {
 }
 
 void TextNote::display() const {
-    cout << "------------------------------\n";
+    cout << "--------------------------\n";
     cout << "Title: " << title << "\n" << content << "\n\n";
 }
 

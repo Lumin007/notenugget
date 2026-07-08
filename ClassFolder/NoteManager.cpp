@@ -9,9 +9,9 @@
 #include <string>
 #include <memory>
 #include <ostream>
-
+#include <iostream>
 #include "Note.h"
-
+#include "NoteManager.h"
 #include <fstream>
 
 using namespace std;
@@ -36,14 +36,13 @@ void NoteManager::removeNote(int index) {
 }
 
 void NoteManager::listNotes() {
-    if (notes.size() == 0) {
-        cout << "keine Notizen vorhanden..." << endl;
+    if (notes.empty()) {
+        cout << "Keine Notizen vorhanden!\n";
         return;
     }
 
-    for (int i = 0; i < notes.size(); i++) {
-        cout << "------------------------------" << endl;
-        notes[i]->display();
+    for (const auto& note : notes) {
+        note->display();
     }
 }
 

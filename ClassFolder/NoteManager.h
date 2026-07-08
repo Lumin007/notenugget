@@ -23,6 +23,7 @@ class NoteManager {
         void removeNote(int index);
         void listNotes();
         void saveToFile();
+        void loadFromFile();
 };
 
 #endif //NOTENUGGET_NOTEMANAGER_H

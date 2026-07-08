@@ -7,8 +7,10 @@
 #include <string>
 #include "NoteManager.h"
 #include "Note.h"
+#include "TextNote.h"
+#include "ToDoNote.h"
+#include <stdexcept>
 
-#include <stdexcept> // Wichtig für Try-Catch (invalid_argument)
 using namespace std;
 
 CLIUI::CLIUI(NoteManager& m) : manager(m){
@@ -55,13 +57,24 @@ void CLIUI::handleUserInput() {
             cout << "Feuge Inhalt hinzu:" << endl;
             getline(cin, content);
 
-            newNote = make_shared<Note>(title, content);
+            newNote = make_shared<TextNote>(title, content);
             manager.addNote(newNote);
 
-            cout << "=> Text-Notiz wird hinzugefuegt...\n";
+            cout << "=> Text-Notiz wurde hinzugefuegt...\n";
             break;
         case 3:
-            cout << "=> Todo-Notiz wird hinzugefuegt...\n";
+            cin.ignore();
+
+            cout << "Bennene die Todo-Notiz:" << endl;
+            getline(cin, title);
+
+            cout << "Feuge Inhalt/Aufgabe hinzu:" << endl;
+            getline(cin, content);
+
+            newNote = make_shared<ToDoNote>(title, content);
+            manager.addNote(newNote);
+
+            cout << "=> Todo-Notiz wurde hinzugefuegt...\n";
             break;
         case 4:
             cout << "=> Notiz wird geloescht...\n";

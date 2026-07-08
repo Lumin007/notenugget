@@ -21,7 +21,6 @@ class NoteManager {
         NoteManager(string fileName);
         void addNote(shared_ptr<Note> newNote);
         void removeNote(int index);
-
         void listNotes();
         void saveToFile();
 };

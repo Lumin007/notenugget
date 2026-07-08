@@ -5,7 +5,7 @@
 #include "TextNote.h"
 using namespace std;
 
-TextNote::TextNote(string t, string c) : Note(t, c) {
+TextNote::TextNote(string t, string c) : title(t), content(c) {
     characterCount = content.length();
 }
 

@@ -2,12 +2,13 @@
 #define NOTENUGGET_TEXTNOTE_H
 
 #include <string>
-#include "Note.h"
 using namespace std;
 
-class TextNote : public Note {
+class TextNote {
 private:
     int characterCount;
+    string title;
+    string content;
 
 public:
     TextNote(string t, string c);

@@ -10,7 +10,7 @@
 using namespace std;
 
 class Note {
-    protected:
+    private:
         string title;
         string content;
     public:

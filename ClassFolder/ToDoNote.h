@@ -6,13 +6,13 @@
 #define NOTENUGGET_TODONOTE_H
 
 #include <string>
-#include "Note.h"
-
 using namespace std;
 
-class ToDoNote : public Note {
+class ToDoNote {
 private:
     bool isDone;
+    string title;
+    string content;
 
 public:
     ToDoNote(string t, string c);

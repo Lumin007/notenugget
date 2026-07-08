@@ -24,6 +24,7 @@ class NoteManager {
 
         void listNotes();
         void saveToFile();
+        void loadFromFile();
 };
 
 #endif //NOTENUGGET_NOTEMANAGER_H

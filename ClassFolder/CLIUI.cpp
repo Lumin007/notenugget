@@ -30,6 +30,7 @@ void CLIUI::printMenu() {
     cout << "[2] Neue Text-Notiz hinzufuegen\n";
     cout << "[3] Neue Todo-Notiz hinzufuegen\n";
     cout << "[4] Notiz loeschen\n";
+    cout << "[5] Todo-Notiz abhaken\n";
     cout << "[0] Programm beenden\n";
     cout << "------------------------------\n";
     cout << "Ihre Wahl: ";
@@ -50,10 +51,10 @@ void CLIUI::handleUserInput() {
             break;
         case 2:
             cin.ignore();
-
+            cout << "------------------------------\n";
             cout << "Bennene die Notiz:" << endl;
             getline(cin, title);
-
+            cout << "------------------------------\n";
             cout << "Feuge Inhalt hinzu:" << endl;
             getline(cin, content);
 
@@ -64,30 +65,41 @@ void CLIUI::handleUserInput() {
             break;
         case 3:
             cin.ignore();
-
+            cout << "------------------------------\n";
             cout << "Bennene die Todo-Notiz:" << endl;
             getline(cin, title);
-
+            cout << "------------------------------\n";
             cout << "Feuge Inhalt/Aufgabe hinzu:" << endl;
             getline(cin, content);
 
             newNote = make_shared<ToDoNote>(title, content);
             manager.addNote(newNote);
-
+            cout << "------------------------------\n";
             cout << "=> Todo-Notiz wurde hinzugefuegt...\n";
             break;
         case 4: {
+            cout << "------------------------------\n";
             cout << "Welchen Index moechtest du loeschen? ";
             int delIndex;
             cin >> delIndex;
-            manager.removeNote(delIndex);
+            manager.removeNote(delIndex-1);
+            break;
+        }
+        case 5: {
+            cout << "------------------------------\n";
+            cout << "Welchen Index moechtest du abhaken? ";
+            int index;
+            cin >> index;
+            manager.toggleTodo(index);
             break;
         }
         case 0:
             manager.saveToFile();
+            cout << "------------------------------\n";
             cout << "Programm wird beendet. Auf Wiedersehen!\n";
             exit(0);
         default:
+            cout << "------------------------------\n";
             cout << "[FEHLER] Bitte eine Zahl zwischen 0 und 6 waehlen.\n";
             break;
     }

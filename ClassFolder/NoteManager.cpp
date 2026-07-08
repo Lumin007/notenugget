@@ -47,8 +47,10 @@ void NoteManager::listNotes() {
         return;
     }
 
-    for (const auto& note : notes) {
-        note->display();
+    for (int i = 0; i < notes.size(); i++) {
+
+        cout << "[" << i+1 << "] ";
+        notes[i]->display();
     }
 }
 
@@ -90,7 +92,7 @@ void NoteManager::loadFromFile() {
         }
         else if (type == "TODO") {
             string status;
-            getline(ss, status, '|'); // Todo hat noch einen 4. Abschnitt: den Status
+            getline(ss, status, '|');
 
             shared_ptr<ToDoNote> todo = make_shared<ToDoNote>(title, content);
 
@@ -103,4 +105,26 @@ void NoteManager::loadFromFile() {
     }
 
     file.close();
+}
+
+
+
+void NoteManager::toggleTodo(int index) {
+    index = index-1;
+    if (index >= 0 && index < notes.size()) {
+
+        shared_ptr<ToDoNote> todo = dynamic_pointer_cast<ToDoNote>(notes[index]);
+
+        if (todo) {
+            todo->toggleDone();
+            cout << "Status von '" << todo->getTitle() << "' wurde erfolgreich geaendert!\n";
+
+            saveToFile();
+        } else {
+            cout << "Fehler: Die Notiz an Index [" << index << "] ist keine Todo-Notiz!\n";
+        }
+
+    } else {
+        cout << "Ungueltiger Index!\n";
+    }
 }

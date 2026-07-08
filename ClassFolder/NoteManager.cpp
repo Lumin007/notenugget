@@ -61,7 +61,3 @@ void NoteManager::saveToFile() {
     file.close();
     cout << "Notizen wurden erfolgreich gespeichert!" << endl;
 }
-
-void NoteManager::loadFromFile() {
-
-}

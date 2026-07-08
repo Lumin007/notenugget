@@ -4,9 +4,10 @@
 
 #include "ToDoNote.h"
 #include <string>
+#include "Note.h"
 using namespace std;
 
-ToDoNote::ToDoNote(string t, string c) : title(t), content(c), isDone(false) {
+ToDoNote::ToDoNote(string t, string c) : Note(t, c), isDone(false) {
 }
 
 

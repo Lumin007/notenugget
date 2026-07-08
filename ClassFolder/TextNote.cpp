@@ -3,9 +3,11 @@
 //
 #include <string>
 #include "TextNote.h"
+#include "Note.h"
+
 using namespace std;
 
-TextNote::TextNote(string t, string c) : title(t), content(c) {
+TextNote::TextNote(string t, string c) : Note(t, c) {
     characterCount = content.length();
 }
 

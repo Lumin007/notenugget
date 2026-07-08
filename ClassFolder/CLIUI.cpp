@@ -7,10 +7,8 @@
 #include <string>
 #include "NoteManager.h"
 #include "Note.h"
-#include "TextNote.h"
-#include "ToDoNote.h"
-#include <stdexcept>
 
+#include <stdexcept> // Wichtig für Try-Catch (invalid_argument)
 using namespace std;
 
 CLIUI::CLIUI(NoteManager& m) : manager(m){
@@ -30,6 +28,7 @@ void CLIUI::printMenu() {
     cout << "[2] Neue Text-Notiz hinzufuegen\n";
     cout << "[3] Neue Todo-Notiz hinzufuegen\n";
     cout << "[4] Notiz loeschen\n";
+    cout << "[5] Notizen laden\n";
     cout << "[0] Programm beenden\n";
     cout << "------------------------------\n";
     cout << "Ihre Wahl: ";
@@ -57,27 +56,19 @@ void CLIUI::handleUserInput() {
             cout << "Feuge Inhalt hinzu:" << endl;
             getline(cin, content);
 
-            newNote = make_shared<TextNote>(title, content);
+            newNote = make_shared<Note>(title, content);
             manager.addNote(newNote);
 
-            cout << "=> Text-Notiz wurde hinzugefuegt...\n";
+            cout << "=> Text-Notiz wird hinzugefuegt...\n";
             break;
         case 3:
-            cin.ignore();
-
-            cout << "Bennene die Todo-Notiz:" << endl;
-            getline(cin, title);
-
-            cout << "Feuge Inhalt/Aufgabe hinzu:" << endl;
-            getline(cin, content);
-
-            newNote = make_shared<ToDoNote>(title, content);
-            manager.addNote(newNote);
-
-            cout << "=> Todo-Notiz wurde hinzugefuegt...\n";
+            cout << "=> Todo-Notiz wird hinzugefuegt...\n";
             break;
         case 4:
             cout << "=> Notiz wird geloescht...\n";
+            break;
+        case 5:
+            manager.loadFromFile();
             break;
         case 0:
             cout << "Programm wird beendet. Auf Wiedersehen!\n";

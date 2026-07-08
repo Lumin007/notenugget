@@ -9,15 +9,20 @@
 #include <string>
 #include <memory>
 #include <ostream>
+#include <sstream>
 #include <iostream>
 #include "Note.h"
 #include "NoteManager.h"
 #include <fstream>
 
+#include "TextNote.h"
+#include "ToDoNote.h"
+
 using namespace std;
 
 NoteManager::NoteManager(string fileName) {
     this->fileName = fileName;
+    loadFromFile();
 }
 
 void NoteManager::addNote(shared_ptr<Note> newNote) {
@@ -26,12 +31,13 @@ void NoteManager::addNote(shared_ptr<Note> newNote) {
 
 void NoteManager::removeNote(int index) {
     if (index >= 0 && index < notes.size()) {
-        notes.erase(notes.begin() + index);
+        string geloeschterTitel = notes[index]->getTitle();
 
-        cout << notes[index]->getTitle() << "wurde erfolgreich gelöscht! " << endl;
+        notes.erase(notes.begin() + index);
+        cout << geloeschterTitel << " wurde erfolgreich geloescht!" << endl;
     }
     else {
-        cout << notes[index]->getTitle() << " konnte nicht gelöscht werden" << endl;
+        cout << "Ungueltiger Index! Konnte nicht geloescht werden." << endl;
     }
 }
 
@@ -51,6 +57,7 @@ void NoteManager::saveToFile() {
 
     if (!file.is_open()) {
         cout << "NoteManager::saveToFile: Kann nicht geöffnet werden!" << endl;
+        return;
     }
 
     for (int i = 0; i < notes.size(); i++) {
@@ -59,4 +66,41 @@ void NoteManager::saveToFile() {
 
     file.close();
     cout << "Notizen wurden erfolgreich gespeichert!" << endl;
+}
+
+void NoteManager::loadFromFile() {
+    ifstream file(fileName);
+
+    if (!file.is_open()) {
+        return;
+    }
+
+    string line;
+
+    while (getline(file, line)) {
+        stringstream ss(line);
+        string type, title, content;
+
+        getline(ss, type, '|');
+        getline(ss, title, '|');
+        getline(ss, content, '|');
+
+        if (type == "TEXT") {
+            addNote(make_shared<TextNote>(title, content));
+        }
+        else if (type == "TODO") {
+            string status;
+            getline(ss, status, '|'); // Todo hat noch einen 4. Abschnitt: den Status
+
+            shared_ptr<ToDoNote> todo = make_shared<ToDoNote>(title, content);
+
+            if (status == "1") {
+                todo->toggleDone();
+            }
+
+            addNote(todo);
+        }
+    }
+
+    file.close();
 }

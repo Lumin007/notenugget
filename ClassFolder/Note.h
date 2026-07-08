@@ -16,8 +16,8 @@ class Note {
     public:
         Note(string title, string content);
         virtual ~Note();
-        virtual void display();
-        virtual string serialize();
+        virtual void display() const;
+        virtual string serialize() const;
         string getTitle();
 };
 

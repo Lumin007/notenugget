@@ -13,7 +13,7 @@ private:
 public:
     TextNote(string t, string c);
     void display() const;
-    void serialize() const;
+    string serialize() const;
     void setContent(const string& newContent);
 };
 

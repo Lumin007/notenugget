@@ -4,6 +4,7 @@
 #include <string>
 #include "TextNote.h"
 #include "Note.h"
+#include "iostream"
 
 using namespace std;
 
@@ -12,11 +13,11 @@ TextNote::TextNote(string t, string c) : Note(t, c) {
 }
 
 void TextNote::display() const {
-
+    cout << "TEXT: " << title << "\n" << content << "\n\n";
 }
 
-void TextNote::serialize() const {
-
+string TextNote::serialize() const {
+    return "TEXT|" + title + "|" + content;
 }
 
 void TextNote::setContent(const string& newContent) {

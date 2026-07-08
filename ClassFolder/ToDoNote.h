@@ -16,7 +16,7 @@ private:
 public:
     ToDoNote(string t, string c);
     void display() const;
-    void serialize() const;
+    string serialize() const;
     void toggleDone();
 };
 

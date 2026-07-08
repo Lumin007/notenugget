@@ -76,10 +76,15 @@ void CLIUI::handleUserInput() {
 
             cout << "=> Todo-Notiz wurde hinzugefuegt...\n";
             break;
-        case 4:
-            cout << "=> Notiz wird geloescht...\n";
+        case 4: {
+            cout << "Welchen Index moechtest du loeschen? ";
+            int delIndex;
+            cin >> delIndex;
+            manager.removeNote(delIndex);
             break;
+        }
         case 0:
+            manager.saveToFile();
             cout << "Programm wird beendet. Auf Wiedersehen!\n";
             exit(0);
         default:

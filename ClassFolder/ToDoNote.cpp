@@ -5,6 +5,7 @@
 #include "ToDoNote.h"
 #include <string>
 #include "Note.h"
+#include "iostream"
 using namespace std;
 
 ToDoNote::ToDoNote(string t, string c) : Note(t, c), isDone(false) {
@@ -12,11 +13,13 @@ ToDoNote::ToDoNote(string t, string c) : Note(t, c), isDone(false) {
 
 
 void ToDoNote::display() const {
-
+    string status = isDone ? "[X]" : "[ ]";
+    cout << status << " TODO: " << title << "\n" << content << "\n\n";
 }
 
-void ToDoNote::serialize() const {
-
+string ToDoNote::serialize() const {
+    string status = isDone ? "1" : "0";
+    return "TODO|" + title + "|" + content + "|" + status;
 }
 
 void ToDoNote::toggleDone() {

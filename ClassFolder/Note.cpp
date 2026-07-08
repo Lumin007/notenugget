@@ -17,10 +17,10 @@ Note::Note(string title, string content) {
 
 Note::~Note() {}
 
-void Note::display() {
+void Note::display() const {
     cout << "Titel: " << title << "\n\n" << content << endl;
 }
-string Note::serialize() {
+string Note::serialize() const{
     return "TEXT|" + title + "|" + content;
 }
 
